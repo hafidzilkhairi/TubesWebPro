@@ -1,0 +1,200 @@
+body{
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: url('../img/bgTubes.jpg') no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+a{
+  text-decoration: none;
+}
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px; /*whatever width you want*/
+    background-color: rgba(156, 105, 52, 0.76);
+    border-radius: 10px;
+    padding: 20px;
+}
+.inner .inputtext{
+  width: 100%;
+  padding: 5px;
+  margin: 3% 0;
+  border: none;
+  background-color: rgba(182, 146, 108, 0);
+  color: #bdc6c9;
+}
+.inner .inputtombol{
+  width: 30%;
+  padding: 5px;
+  margin: 3% 0;
+  border: none;
+  background-color: rgba(182, 146, 108, 0);
+  color: #bdc6c9;
+}
+.inner>form>center>img{
+  height: 20%;
+  width: 20%;
+}
+.inner>form>p{
+  text-align: center;
+}
+.warning{
+   color:red;
+   display:none;
+}
+.navigasi{
+  background-color: rgba(156, 105, 52, 0.76);
+  position:fixed;
+  width: 100%;
+}
+.navigasi > li > a{
+  color: white;
+}
+.navigasi > li:hover{
+  background-color: rgba(156, 105, 52, 0.4);
+}
+#navbarSupportedContent{
+    background-color: rgb(230, 230, 230);
+}
+.carousel1{
+  height: 500px;
+}
+.produk{
+    box-sizing: border-box;
+    margin-top: 10px;
+    height: auto;
+}
+.gambarProduk{
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: auto;
+    border-radius: 10px;
+}
+#gambarProduk1{
+    background: url(../asset/img/produk/gbr1.png);
+}
+#gambarProduk2{
+    background: url(../asset/img/produk/gbr2.png);
+}
+#gambarProduk3{
+    background: url(../asset/img/produk/gbr3.jpg);
+}
+#gambarProduk4{
+    background: url(../asset/img/produk/gbr4.jpeg);
+}
+#gambarProduk5{
+    background: url(../asset/img/produk/gbr5.jpg);
+}
+#gambarProduk6{
+    background: url(../asset/img/produk/gbr6.jpg);
+}
+#gambarProduk7{
+    background: url(../asset/img/produk/gbr7.png);
+}
+#gambarProduk8{
+    background: url(../asset/img/produk/gbr8.jpg);
+}
+.captionProduk{
+    white-space:nowrap;
+    max-height: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.copyright{
+    font-size: 60%;
+    color: grey;
+}
+.footer{
+    min-height: 40px;
+}
+.kontenProduk{
+  min-height: 65vh;
+}
+
+.footer-distributed{
+	background-color: #292c2f;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: normal 16px sans-serif;
+
+	padding: 45px 50px;
+	margin-top: 80px;
+}
+
+.footer-distributed .footer-left p{
+	color:  #8f9296;
+	font-size: 14px;
+	margin: 0;
+}
+
+/* Footer links */
+
+.footer-distributed p.footer-links{
+	font-size:18px;
+	font-weight: bold;
+	color:  #ffffff;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+.footer-distributed p.footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-right{
+	float: right;
+	margin-top: 6px;
+	max-width: 180px;
+}
+
+.footer-distributed .footer-right a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-left: 3px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 600px) {
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-right{
+		text-align: center;
+	}
+
+	.footer-distributed .footer-right{
+		float: none;
+		margin: 0 auto 20px;
+	}
+
+	.footer-distributed .footer-left p.footer-links{
+		line-height: 1.8;
+	}
+}
