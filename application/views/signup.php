@@ -11,7 +11,7 @@
     <style>
 		body{
 			
-            background:url('Resource/img/bgTubes.jpg') no-repeat;
+            background:url('<?php echo $this->config->base_url(); ?>Resource/img/bgTubes.jpg') no-repeat;
             width:100%;
             height:100vh;
 			background-attachment:fixed;
@@ -27,6 +27,29 @@
             box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
         }
     </style>
+    
+    <script>
+    function pengecek(){
+        var saya = $('#exampleInputPassword1').val();
+        var saya2 = $('#exampleInputPassword2').val();
+        console.log(saya+" = "+saya2);
+        // kamu = true;
+        // for(i=0;i<saya.length;i++){
+        //     if(saya[i]!=saya2[i]){
+        //                     kamu=false;
+        //                     console.log(saya[i]+" = "+saya2[i]);
+        //     }
+        // }
+        return saya==saya2;
+    }
+    function penghilang(){
+        if(pengecek()){
+            $('#peringat').hide();
+        }else{
+            $('#peringat').show();
+        }
+    }
+    </script>
 </head>
 <body>
     <div class="container-fluid bg">
@@ -36,18 +59,18 @@
                 <!-- Form Start -->
                 <form method='post' action="<?php echo $this->config->base_url(); ?>signup/action" class='form-container form-login'>
                     <h1>Kuriak<sup style="font-size:10px;">Sign Up  </sup></h1>
+                    <?php echo validation_errors(); ?>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Type Password Again...">
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <input name="pwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>                        
+                        <input name="pwdv" onkeyup='penghilang();' type="password" class="form-control" id="exampleInputPassword2" placeholder="Type Password Again..." required>
+                        <div id='peringat' class="alert alert-danger" role="alert">
+                        Ketik Password yang sama!!!
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-primary btn-block">Sign Up</button>
                     <hr>
@@ -59,5 +82,8 @@
             <div class="col-md-4 col-sm-4 col-xs-12"></div>
         </div>
     </div>
+    <script>
+        $('#peringat').css('display','none');
+    </script>
 </body>
 </html>

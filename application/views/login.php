@@ -11,7 +11,7 @@
     <style>
 		body{
 			
-            background:url('Resource/img/bgTubes.jpg') no-repeat;
+            background:url('<?php echo $this->config->base_url(); ?>Resource/img/bgTubes.jpg') no-repeat;
             width:100%;
             height:100vh;
 			background-attachment:fixed;
@@ -36,13 +36,14 @@
                 <!-- Form Start -->
                 <form method='post' action="<?php echo $this->config->base_url(); ?>login/action" class='form-container form-login'>
                     <h1>Kuriak<sup style="font-size:10px;">Login</sup></h1>
+                    <span style='color:red;'><?php echo validation_errors(); ?></span>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input name="email"type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input name="password"type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input name="pwd"type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 					<button type="submit" class="btn btn-primary btn-success btn-block">Login</button>
 					<hr>
