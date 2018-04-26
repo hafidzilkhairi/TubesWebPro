@@ -20,6 +20,7 @@ class Login extends CI_Controller{
         if ($this->form_validation->run() == FALSE){
             $this->load->view('login');
         }else{
+            unset($_SESSION['userAdminId']);
             $this->session->set_userdata('userId',$this->user->getInfoUser($email)['id']);
             redirect($this->config->base_url());
         }
