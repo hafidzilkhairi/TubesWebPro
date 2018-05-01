@@ -2,6 +2,14 @@
 	class artikel extends CI_Model
 	{
 		function insert($x){
+			$kode=mysqli_query($conn, 'select max(id_artikel) as kode from artikel');
+			$kod=mysqli_fetch_array($kode);
+			$ko=substr($kod['kode'],1,4);
+			$t=$ko+1;
+			if ($t<10) $id='A000'.$t;
+			else $id='A00'.$t;
+			// cari tanggal
+			$tgl=date("Y-m-d");
 			return $this->db->query("INSERT into artikel (id_artikel, judul, author, tgl, detail, review, kelebihan, kekurangan) values ('".$id."', '".$x['judul']."', '".$x['author']."', DATE ('".$tgl."'), '".$x['detail']."', '".$x['review']."', '".$x['kelebihan']."', '".$x['kekurangan']."')");
 		}	
 		function delete($x){
