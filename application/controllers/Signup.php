@@ -36,10 +36,10 @@ class Signup extends CI_Controller{
         $pwd=$this->input->post('pwd');
         $pwdv=$this->input->post('pwdv');
         if($this->user->isAvailable($email)){
-            $this->form_validation->set_message('pengecek', 'Email yang diinput sudah terdaftar');
+            $this->form_validation->set_message('sama', 'Email yang diinput sudah terdaftar');
             return false;
         }else if($pwd!=$pwdv){
-            $this->form_validation->set_message('pengecek', 'Password berbeda dengan validasi');
+            $this->form_validation->set_message('sama', 'Password berbeda dengan validasi');
             return false;
         }else{
             return true;

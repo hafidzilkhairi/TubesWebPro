@@ -25,7 +25,7 @@
 					<a href="#">Contact</a>
 				</p>
 
-				<p>Company Name &copy; 2015</p>
+				<p>Kuriak &copy; <?php echo date('Y'); ?></p>
 			</div>
 
 		</footer>

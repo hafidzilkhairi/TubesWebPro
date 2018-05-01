@@ -15,7 +15,7 @@
 </head>
 <body>
   <!-- Menu Navigasi -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed">
     <a class="navbar-brand" href="index.html">KURIAK</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -34,6 +34,5 @@
       </ul>
     </div>
   </nav>
-    <a href="#" style="text-align:center;right:10px;bottom:10px;position:fixed;height:50px;width:50px;border-radius:50px;color:white;background-color:black;">
-      TOP
-    </a>
+  <div class="navbar-fixed-clear">
+  </div>

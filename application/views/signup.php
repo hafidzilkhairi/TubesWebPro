@@ -59,7 +59,7 @@
                 <!-- Form Start -->
                 <form method='post' action="<?php echo $this->config->base_url(); ?>signup/action" class='form-container form-login'>
                     <h1>Kuriak<sup style="font-size:10px;">Sign Up  </sup></h1>
-                    <?php echo validation_errors(); ?>
+                    <span style="color:red;"><?php echo validation_errors(); ?></span>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>

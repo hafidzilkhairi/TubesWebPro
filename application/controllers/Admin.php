@@ -29,7 +29,9 @@ class Admin extends CI_Controller{
             redirect($this->config->base_url()."admin/login");
         }
     }
-    public function action(){
+    public function logout(){
+        unset($_SESSION['userAdminId']);
+        redirect($this->config->base_url()."admin");
     }
     public function login(){
         if(isset($_POST['email'])&&isset($_POST['pwd'])){
@@ -88,6 +90,27 @@ class Admin extends CI_Controller{
         $id = $this->input->get('id');
         $this->user->hapus($id);
         redirect($this->config->base_url().'admin');
+    }
+    public function tambahUser(){
+        if($this->session->has_userdata('userAdminId')){
+            if(isset($_POST['email'])){
+                $data['email']=$_POST['email'];
+                $data['password']=$_POST['pwd'];
+                $data['status']=$_POST['statusUser'];
+                $dia = $this->db->query('select * from user where email="'.$data['email'].'"')->num_rows();
+                if($dia>0){
+                    $this->session->set_flashdata('tambahuser','gagal');
+                }else{
+                    $this->db->insert('user',$data);
+                    $this->session->set_flashdata('tambahuser','berhasil');
+                }
+                redirect($this->config->base_url().'admin/kelolaUser');
+            }else{
+                redirect($this->config->base_url().'admin/kelolaUser');
+            }
+        }else{
+            redirect($this->config->base_url().'admin');
+        }
     }
 }
 
