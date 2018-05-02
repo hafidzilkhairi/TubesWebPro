@@ -47,7 +47,7 @@
         .menu-admin li:hover{
             background: #202020;
         }
-        .menu-admin li a{
+        .menu-admin a{
             text-decoration: none;
             display: block;
             color: white;
@@ -81,8 +81,8 @@
     <div class="menu-admin">
         <ul>
             <li onclick="toggle()"><b>X</b> Close</li>
-            <li><a href="<?php echo $this->config->base_url(); ?>admin/kelolauser">Kelola User</a></li>
-            <li>Saya dan dia selalu bersama sama</li>
+            <a href="<?php echo $this->config->base_url(); ?>admin/kelolauser"><li>Kelola User</li></a>
+            <a href="<?php echo $this->config->base_url(); ?>admin/kelolaartikel"><li>Kelola Artikel</li></a>
             <li>Saya</li>
             <li>Saya</li>
             <li>Saya</li>

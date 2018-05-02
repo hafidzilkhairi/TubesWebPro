@@ -5,22 +5,23 @@ class User extends CI_Model{
     }
 
     function isAvailable($email){
-        return 0<$this->db->query('select * from user where email="'.$email.'"')->num_rows();
+        return 0<$this->db->query('select * from user where email_user="'.$email.'"')->num_rows();
     }
 
-    function tambahUser($email,$password){
-        return $this->db->insert('user',array('email'=>$email,'password'=>$password,'status'=>false));
+    function tambahUser($email,$uname,$password){
+        return $this->db->insert('user',array('email_user'=>$email,'username'=>$uname,'password_user'=>$password,'status_user'=>false));
     }
 
     function getInfoUser($email){
-        return $this->db->get_where('user',array('email'=>$email))->result_array()[0];
+        return $this->db->get_where('user',array('email_user'=>$email))->result_array()[0];
     }
     function validasiUser($email,$pwd){
-        return $this->db->get_where('user',array('email'=>$email,'password'=>$pwd))->num_rows()>0;
+        return $this->db->get_where('user',array('email_user'=>$email,'password_user'=>$pwd))->num_rows()>0;
     }
     function hapus($id){
-        $this->db->where('id', $id);
+        $this->db->where('id_user', $id);
         return $this->db->delete('user');
     }
+
 }
 ?>

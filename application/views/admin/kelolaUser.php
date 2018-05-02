@@ -18,6 +18,7 @@ if($this->session->flashdata('tambahuser')=='berhasil'){
 				<th>No.</th>
 				<th>Id</th>
 				<th>Email</th>
+				<th>Username</th>
 				<th>Status</th>
 				<th>Password</th>
 				<th>Action</th>
@@ -28,26 +29,29 @@ if($this->session->flashdata('tambahuser')=='berhasil'){
             $jumlah = 1;
             foreach ($user as $key){
             $status = 'User';
-            if($key['status']==1) $status='Admin';
+            if($key['status_user']==1) $status='Admin';
             echo "<tr>";
             echo"<td>".$jumlah++."</td>";
                 ?>
 			<td>
-				<?php echo $key['id'];?>
+				<?php echo $key['id_user'];?>
 			</td>
 			<td>
-				<?php echo $key['email'];?>
+				<?php echo $key['email_user'];?>
+			</td>
+			<td>
+				<?php echo $key['username'];?>
 			</td>
 			<td>
 				<?php echo $status;?>
 			</td>
 			<td>
-				<?php echo $key['password'];?>
+				<?php echo $key['password_user'];?>
 			</td>
 			<td>
 				<button class='editBTN btn btn-sm btn-primary'>
 					<i class='fa fa-pencil'></i>Edit</button>
-				<a href="<?php echo $this->config->base_url(); ?>admin/hapus?id=<?php echo $key['id']; ?>">
+				<a href="<?php echo $this->config->base_url(); ?>admin/hapus?id=<?php echo $key['id_user']; ?>">
 					<button class='btn btn-sm btn-danger'>
 						<i class='fa fa-trash'></i>Hapus</button>
 			</td>
@@ -78,17 +82,21 @@ if($this->session->flashdata('tambahuser')=='berhasil'){
 		</form>
 	</div>
 	<div id="formulirTambah" style="display:none; position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0, 0, 0, 0.7)">
-		<form method="POST" action="<?php echo $this->config->base_url(); ?>admin/tambahUser" style="position: relative;margin: 15% 20%;background: white;border-radius: 10px;padding: 20px;">
+		<form method="POST" action="<?php echo $this->config->base_url(); ?>admin/tambahUser" style="position: relative;margin: 8% 20%;background: white;border-radius: 10px;padding: 20px;">
 			<span onclick="$('#formulirTambah').hide();" style="position: absolute;right: 15px;top: 10px;cursor: pointer;">
 				<b>X</b>
 			</span>
 			<center>
-				<h1>Edit User</h1>
+				<h1>Tambah User</h1>
 			</center>
 			<input type="text" name='id' style="display: none;">
 			<div class="form-group">
 				<label for="exampleInputEmail1"><b>Email address</b></label>
 				<input name='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+			<div class="form-group">
+				<label for="exampleInputUsername1"><b>Username</b></label>
+				<input name='uname' type="text" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <label for=""><b>Status User</b></label>
 			<div class="form-check">

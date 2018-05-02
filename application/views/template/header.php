@@ -31,6 +31,9 @@
         <li class="nav-item">
           <a class="nav-link" href="contactus.html">Contact Us</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo base_url();?>artikel">Artikel</a>
+        </li>
       </ul>
     </div>
   </nav>

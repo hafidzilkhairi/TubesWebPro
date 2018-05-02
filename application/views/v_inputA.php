@@ -34,7 +34,7 @@
         <div class="form-group">
           <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
         </div>
-        </form>   
+      </form>   
 </div>
 <script type="text/javascript">
   function bacaGambar(input) {

@@ -22,17 +22,18 @@
     		$this->load->view('template/footer.php');
     	}
     	function inputdata() {
-        // setting konfigurasi upload
-        $config['upload_path']          = './imgArtikel/';
-		$config['allowed_types']        = 'jpg||png';
-		$config['max_size']             = 5000;
-        // load library upload
-		$data['namabarang']=
+			// setting konfigurasi upload
+			$config['upload_path']          = './imgArtikel/';
+			$config['allowed_types']        = 'jpg||png';
+			$config['max_size']             = 5000;
+			// load library upload
+			$data['namabarang']=
 
-        $this->load->library('upload', $config);
-        if (!$this->upload->do_upload('gambar')) {
-            $data['result'] = $this->upload->display_errors();
-            $this->load->view('v_upload', $data);
-        }
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('gambar')) {
+				$data['result'] = $this->upload->display_errors();
+				$this->load->view('v_upload', $data);
+			}
+		}
 	}
 ?>

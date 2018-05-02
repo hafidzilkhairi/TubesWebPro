@@ -15,16 +15,18 @@ class Signup extends CI_Controller{
 
     function action(){
         $email = $this->input->post('email');
+        $uname = $this->input->post('username');
         $pwd=$this->input->post('pwd');
         $pwdv=$this->input->post('pwdv');
         $this->form_validation->set_rules('email', 'Email', 'required|callback_sama');
         $this->form_validation->set_rules('pwd', 'Password', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('pwdv', 'Password Confirmation', 'required');
         if ($this->form_validation->run() == FALSE){
             $this->load->view('signup');
         }
         else{
-            $this->user->tambahUser($email,$pwd);
+            $this->user->tambahUser($email,$uname,$pwd);
             $id = $this->user->getInfoUser($email)['id'];
             $this->session->set_userdata('userId',$id);
             redirect($this->config->base_url());

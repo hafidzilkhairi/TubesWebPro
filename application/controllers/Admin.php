@@ -4,12 +4,13 @@ class Admin extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('user');
+        $this->load->model('artikel');
     }
     function kelolaUser($halaman = 1){
         if($this->session->has_userdata('userAdminId')){
             $this->load->view('admin/template/header');
             if(isset($_GET['pencari'])&&$_GET['pencari']!=''){
-                $data['user'] = $this->db->query('select * from user where email like "%'.$_GET['pencari'].'%"')->result_array();
+                $data['user'] = $this->db->query('select * from user where email_user like "%'.$_GET['pencari'].'%"')->result_array();
                 $this->load->view('admin/kelolaUser',$data);
             }else{
                 $data['user']=$this->user->getUser($halaman);
@@ -49,7 +50,7 @@ class Admin extends CI_Controller{
                 $this->load->view('admin/login');
             }else{
                 unset($_SESSION['userId']);
-                $this->session->set_userdata('userAdminId',$this->user->getInfoUser($email)['id']);
+                $this->session->set_userdata('userAdminId',$this->user->getInfoUser($email)['id_user']);
                 redirect($this->config->base_url()."admin");
             }
         }else{
@@ -60,6 +61,7 @@ class Admin extends CI_Controller{
         if(isset($_POST['email'])){
             $email = $this->input->post('email');
             $pwd = $this->input->post('pwd');
+            echo "<script>alert($email+'saya'+$pwd);</script>";
             if($this->user->validasiUser($email,$pwd)){
                 return true;
             }else{
@@ -77,7 +79,7 @@ class Admin extends CI_Controller{
     public function editUser(){
         if($this->session->has_userdata('userAdminId')){
             if(isset($_POST['email'])){
-                $this->db->query('update user SET email="'.$_POST['email'].'", password="'.$_POST['pwd'].'" where id='.$_POST['id']);
+                $this->db->query('update user SET email_user="'.$_POST['email'].'", password="'.$_POST['pwd'].'" where id_user='.$_POST['id']);
                 redirect($this->config->base_url().'admin');
             }else{
                 redirect($this->config->base_url().'admin/kelolaUser');
@@ -94,10 +96,11 @@ class Admin extends CI_Controller{
     public function tambahUser(){
         if($this->session->has_userdata('userAdminId')){
             if(isset($_POST['email'])){
-                $data['email']=$_POST['email'];
-                $data['password']=$_POST['pwd'];
-                $data['status']=$_POST['statusUser'];
-                $dia = $this->db->query('select * from user where email="'.$data['email'].'"')->num_rows();
+                $data['email_user']=$_POST['email'];
+                $data['password_user']=$_POST['pwd'];
+                $data['username'] = $_POST['uname'];
+                $data['status_user']=$_POST['statusUser'];
+                $dia = $this->db->query('select * from user where email_user="'.$data['email'].'" or username="'.$data['username'].'"')->num_rows();
                 if($dia>0){
                     $this->session->set_flashdata('tambahuser','gagal');
                 }else{
@@ -111,6 +114,72 @@ class Admin extends CI_Controller{
         }else{
             redirect($this->config->base_url().'admin');
         }
+    }
+    public function kelolaArtikel(){
+        if(isset($_SESSION['userAdminId'])){
+            $query = $this->db->query('select * from artikel');
+            if($query->num_rows>0){
+                $data['artikel'] = $query->result_array()[0];
+            }else{
+                $data['artikel'] = $query->result_array();
+            }
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/kelolaArtikel',$data);
+        }else{
+            redirect($this->config->base_url().'admin');
+        }
+    }
+    public function tambahArtikel(){
+        if(isset($_SESSION['userAdminId'])){
+            if(isset($_POST['submitTambahArtikel'])){
+                $artikel['judul_artikel'] = $_POST['judul'];
+                $artikel['id_user'] = $_SESSION['userAdminId'];
+                $artikel['deskripsi_artikel'] = $_POST['deskripsi'];
+                $artikel['tgl_artikel']=date('Y-m-d');
+                $this->artikel->insert($artikel);
+                $idartikel = $this->db->query('select max(id_artikel) as maks from artikel')->result_array()[0]['maks'];
+                $config['upload_path']          = 'asset/artikel/';
+                $config['allowed_types']        = 'jpg|png|jpeg';
+                $config['max_size']             = 5000000;
+                $file_ext = pathinfo($_FILES["userfile"]["name"], PATHINFO_EXTENSION);
+                $data['id_artikel'] =(int) $idartikel;
+                $uploadgambarartikel['id_artikel'] = $idartikel;
+                $uploadgambarartikel['slug'] = '';
+                $this->db->insert('gambarartikel',$uploadgambarartikel);
+                $query = $this->db->query('select max(id_gambarartikel) as maks from gambarartikel')->result_array()[0];
+                $config['file_name']=$query['maks'];
+                $dia['slug'] = $query['maks'].'.'.$file_ext;
+                //echo "<script>alert('".$dia['slug']."');</script>";
+                $this->db->where('id_gambarartikel',$query['maks']);
+                $this->db->update('gambarartikel',$dia);
+                $this->load->library('upload', $config);
+                if(file_exists('asset/artikel/'.$dia['slug'])) unlink('asset/artikel/'.$dia['slug']);
+                if ( ! $this->upload->do_upload('userfile'))
+                {
+                    $this->db->query('delete from gambarartikel where id_gambarartikel='.$query['maks']);
+                    $this->session->set_flashdata('uploadgambarartikel','gagal');
+                    $error = array('error' => $this->upload->display_errors());
+                    //echo 'gagal '.$this->upload->display_errors();
+                }
+                else
+                {  
+                    $this->session->set_flashdata('uploadgambarartikel','sukses');
+                    //echo 'berhasil';
+                }
+                redirect($this->config->base_url().'admin/kelolaartikel');
+
+
+
+            }else{
+                $this->load->view('admin/template/header');
+                $this->load->view('admin/tambahArtikel');
+            }
+        }else{
+            redirect($this->config->base_url().'admin');
+        }
+    }
+    public function kelolaBarang(){
+        
     }
 }
 
