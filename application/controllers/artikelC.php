@@ -12,9 +12,14 @@
 		}
 		function index(){
         $this->load->view('template/header.php');
-        $query=$this->artikel->get();
+        $query['data']=$this->artikel->get();
         $this->load->view('v_daftarAC', $query);
         $this->load->view('template/footer.php');
+    	}
+    	function tampil(){
+    		$this->load->view('template/header.php');
+	        $this->load->view('v_artikel');
+	        $this->load->view('template/footer.php');
     	}
 	}
 ?>

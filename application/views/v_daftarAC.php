@@ -1,4 +1,9 @@
 <html lang="en">
+  <head>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+      <script src="js/jPages.js"></script>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
   <body>
     <div class="container" style="margin-top: 100px;" style="background-color: rgba(255, 255, 255, 3);">
       <div class="row">
@@ -10,7 +15,7 @@
       					if (isset($data)) {
       					  foreach ($data as $x) {
             	 ?>
-                <li style="float : left;">
+                <li>
                 	<a href="<?php echo $this->config->base_url(); ?>?id=<?php echo $x['id_artikel'] ?>">
                     <div class="row">
                     	<div class="col-md-12">
@@ -59,8 +64,3 @@
   a {color: black;}
   li  {list-style-type: none;}
 </style>
-<head>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="js/jPages.js"></script>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
