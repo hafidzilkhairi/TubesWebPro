@@ -1,5 +1,7 @@
 <div class="container" style="background-color: rgba(255, 255, 255, 0.3); margin-top: 10px; border-radius: 10px;">
-      <form class="ng-pristine ng-valid" method="POST" action="<?php echo $this->config->base_url(); ?>artikelA/inputdata" role="form" style="margin-top: 20px; padding: 30px; padding-bottom: 50px;">
+      <?php
+        echo form_open_multipart('artikelA/inputdata');
+      ?>
         <div><h3 style="text-align: center; margin-bottom: 20px;">Input Artikel</h3></div>
       	<div class="row form-group">
            <div class="col-sm-6">
@@ -28,7 +30,7 @@
             <textarea rows="5" class="form-control" id="inputPassword3" name="kekurangan" required></textarea>
         </div>
         <div class="form-group">
-          <input type="file" name="gambar" id="preview_gambar"><br><br>
+          <input type="file" name="berkas" id="preview_gambar" required><br><br>
           <img src="#" id="gambar" width="400" alt="Preview Gambar" style="display: none;">
         </div>  
         <div class="form-group">
@@ -37,7 +39,7 @@
         <div class="form-group" style="color: red;">
           <?php if (isset($result)) echo $result; ?>
         </div>
-        </form>   
+        <?php echo form_close(); ?>   
 </div>
 <script type="text/javascript">
   function bacaGambar(input) {
@@ -58,3 +60,8 @@
   })
   });
 </script>
+<style>
+  form {
+    margin-top: 20px; padding: 30px; padding-bottom: 50px;
+  }
+</style>

@@ -35,7 +35,7 @@
                     <td><?php echo $data["tgl"]; ?></td>
                     <td><center>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#del<?php echo $data["id_artikel"]; ?>"><i class="fa fa-trash-o"></i></button>
-                        <a href="<?php echo $this->config->base_url(); ?>artikelA/update?id=<?php echo $data["id_artikel"]; ?>"><button type="button" class="btn btn-info" ><i class="fa fa-pencil"></i></button></center></a>
+                        <a href="<?php echo $this->config->base_url().'artikelA/update?id='.$data['id_artikel'] ;?>"><button type="button" class="btn btn-info" ><i class="fa fa-pencil"></i></button></center></a>
                     </td>
                 </tr>
                   <div class="modal fade" id="del<?php echo $data['id_artikel']; ?>" tabindedata="-1" role="dialog" aria-labelledby="edataampleModalLabel" aria-hidden="true">

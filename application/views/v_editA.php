@@ -1,11 +1,15 @@
-<div class="container" style="background-color: rgba(255, 255, 255, 3);">
+<?php if(isset($x)){ 
+        foreach ($x as $x){
+  ?>
+<div class="container" style="background-color: rgba(255, 255, 255, 0.3); margin-top: 10px; border-radius: 10px;">
 	<section>
-      <h3>Edit Artikel</h3>
-      <form class="ng-pristine ng-valid" method="POST" role="form">
+      <h3 style="text-align: center">Edit Artikel</h3>
+      <form class="ng-pristine ng-valid" action="<?php echo $this->config->base_url(); ?>artikelA/updatedata" method="POST" role="form">
       	<div class="row form-group">
            <div class="col-sm-6">
               <label for="inputName" class="control-label">Judul :</label>
               <input type="text" class="form-control" value="<?php echo $x['judul'] ?>" name="judul" required>
+              <input type="text" class="form-control" value="<?php echo $x['id_artikel'] ?>" style="display : none;" name="id" required>
             </div>  
             <div class="col-sm-6">
 	            <label for="inputEmail3" class="control-label">Author :</label>
@@ -34,3 +38,5 @@
         </form>   
     </section>
 </div>
+
+<?php }} else echo "<script>alert('data tidak ada')</script>";  ?> 

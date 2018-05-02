@@ -6,6 +6,7 @@
 		{
 			parent::__construct();
 			$this->load->model('artikel');
+			$this->load->helper(array('form', 'url'));
 	        // if(!$this->session->has_userdata('userId')){
 	        //     redirect($this->config->base_url()."login");
 	        // }
@@ -29,30 +30,47 @@
     	$data['review']=$this->input->post('review');
     	$data['kelebihan']=$this->input->post('kelebihan');
     	$data['kekurangan']=$this->input->post('kekurangan');
+    	$id=$this->artikel->getgetan();
 
         $config['upload_path']          = 'Resource/imgArtikel/';
 		$config['allowed_types']        = 'jpg||png';
 		$config['max_size']             = 5000;
+		$config['file_name']			= $id;
         // load library upload
-		$data['img']= pathinfo($_FILES['gambar']["name"], PATHINFO_EXTENSION);
 
         $this->load->library('upload', $config);
-        if (!$this->upload->do_upload('gambar')) {
+        if (!$this->upload->do_upload("berkas")) {
             $data['result'] = $this->upload->display_errors();
-            $this->load->view('v_inputA', $data);
+            echo "<script>alert('".$data['result']."')</script>";
         } else {
         	$this->artikel->insert($data);
-        	index();
+        	redirect('artikelA');
         }
 		}
 		function update(){
-			$this->load->view();
+			$data['x']=$this->artikel->getid($_GET['id']);
+			$this->load->view('template/header.php');
+			$this->load->view('v_editA',$data);
+			$this->load->view('template/footer.php');
 		}
+
+		function updatedata(){
+			$data['judul']=$this->input->post('judul');
+	    	$data['author']=$this->input->post('author');
+	    	$data['detail']=$this->input->post('detail');
+	    	$data['review']=$this->input->post('review');
+	    	$data['kelebihan']=$this->input->post('kelebihan');
+	    	$data['kekurangan']=$this->input->post('kekurangan');
+	    	$data['id_artikel']=$this->input->post('id');
+	    	$this->artikel->update($data);
+	    	redirect('artikelA');
+		}
+
 		function deletedata(){
-		$data["id_artikel"]=$this->input->post('id');
-		$query=$this->artikel->delete($data);
-		redirect('artikelA/index');
+			$data["id_artikel"]=$this->input->post('id');
+			$query=$this->artikel->delete($data);
+			redirect('artikelA/index');
 		}
 	}
 
-?>
+?> 

@@ -15,8 +15,8 @@
       					if (isset($data)) {
       					  foreach ($data as $x) {
             	 ?>
-                <li>
-                	<a href="<?php echo $this->config->base_url(); ?>?id=<?php echo $x['id_artikel'] ?>">
+                <li style="margin-top: 20px;">
+                	<a href="<?php echo $this->config->base_url().'artikelC/tampil?id='.$x['id_artikel'] ;?>">
                     <div class="row">
                     	<div class="col-md-12">
                     		<i class="fa fa-clock-o"></i> <?php echo $x['tgl'] ?>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="row">
                     	<div class="col-md-3">
-                    		<img src="imgartkl/natsu.jpg" style="height: 100px; width: 200px;" class="image responsive">
+                    		<img src="Resource/imgArtikel/<?php echo $x['id_artikel'] ?>.jpg" style="height: 100px; width: 200px;" class="image responsive">
                     	</div>
                     	<div class="col-md-5 captionProduk">
                     		<p><?php echo $x['review'] ?></p>
