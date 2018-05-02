@@ -83,15 +83,7 @@
             <li onclick="toggle()"><b>X</b> Close</li>
             <a href="<?php echo $this->config->base_url(); ?>admin/kelolauser"><li>Kelola User</li></a>
             <a href="<?php echo $this->config->base_url(); ?>admin/kelolaartikel"><li>Kelola Artikel</li></a>
-            <li>Saya</li>
-            <li>Saya</li>
-            <li>Saya</li>
-            <li>Saya</li>
-            <li>Saya</li>
-            <li>Saya</li>
-            <li>Saya</li>
-            <li>Saya</li>
-            <li>Saya</li>
+            <a href="<?php echo $this->config->base_url(); ?>admin/kelolabarang"><li>Kelola Barang</li></a>
         </ul>
     </div>
     <div class="main-menu">

@@ -8,7 +8,8 @@ class Kuriak extends CI_Controller{
     }
     function index(){
         $this->load->view('template/header.php');
-        $this->load->view('tampilanUtama');
+        $data['barang'] = $this->db->get('barang')->result_array();
+        $this->load->view('tampilanUtama',$data);
         $this->load->view('template/footer.php');
     }
 }

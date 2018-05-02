@@ -6,7 +6,7 @@
         ?>
             <div class="col-md-3">
                 <div>
-                    <a href="<?php echo base_url(); ?>/artikel/show?id=<?php echo $key['id_artikel'] ?>"><img style="width:100%;height:100%;" src="<?php echo base_url(); ?>asset/artikel/<?php echo $gambar;?>" alt=""></a>
+                    <a href="<?php echo base_url(); ?>artikel/show?id=<?php echo $key['id_artikel'] ?>"><img style="width:100%;height:100%;" src="<?php echo base_url(); ?>asset/artikel/<?php echo $gambar;?>" alt=""></a>
                 </div>
             </div>
             <div class="col-md-9">

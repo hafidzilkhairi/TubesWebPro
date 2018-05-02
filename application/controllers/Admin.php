@@ -5,6 +5,7 @@ class Admin extends CI_Controller{
         parent::__construct();
         $this->load->model('user');
         $this->load->model('artikel');
+        $this->load->model('barang');
     }
     function kelolaUser($halaman = 1){
         if($this->session->has_userdata('userAdminId')){
@@ -179,7 +180,58 @@ class Admin extends CI_Controller{
         }
     }
     public function kelolaBarang(){
-        
+        $this->load->helper(array('form', 'url'));
+        $data['data']=$this->barang->getbarang();
+        $this->load->view('admin/template/header');
+        $this->load->view('admin/kelolabarang',$data, array('error' => ' ' ));
+    }
+    public function tambahBarang(){
+        if(isset($_SESSION['userAdminId'])){
+            if(isset($_POST['submitTambahBarang'])){
+                $barang['nama_barang'] = $_POST['nama_barang'];
+                $barang['deskripsi_barang'] = $_POST['deskripsi_barang'];
+                $barang['harga_barang']=$_POST['harga_barang'];
+                $this->db->insert('barang',$barang);
+                $idbarang = $this->db->query('select max(id_barang) as maks from barang')->result_array()[0]['maks'];
+                $config['upload_path']          = 'asset/barang/';
+                $config['allowed_types']        = 'jpg|png|jpeg';
+                $config['max_size']             = 5000000;
+                $file_ext = pathinfo($_FILES["userfile"]["name"], PATHINFO_EXTENSION);
+                $data['id_barang'] =(int) $idbarang;
+                $uploadgambarbarang['id_barang'] = $idbarang;
+                $uploadgambarbarang['slug'] = '';
+                $this->db->insert('gambarbarang',$uploadgambarbarang);
+                $query = $this->db->query('select max(id_gambarbarang) as maks from gambarbarang')->result_array()[0];
+                $config['file_name']=$query['maks'];
+                $dia['slug'] = $query['maks'].'.'.$file_ext;
+                //echo "<script>alert('".$dia['slug']."');</script>";
+                $this->db->where('id_gambarbarang',$query['maks']);
+                $this->db->update('gambarbarang',$dia);
+                $this->load->library('upload', $config);
+                if(file_exists('asset/barang/'.$dia['slug'])) unlink('asset/barang/'.$dia['slug']);
+                if ( ! $this->upload->do_upload('userfile'))
+                {
+                    $this->db->query('delete from gambarbarang where id_gambarbarang='.$query['maks']);
+                    $this->session->set_flashdata('uploadgambarbarang','gagal');
+                    $error = array('error' => $this->upload->display_errors());
+                    echo 'gagal '.$this->upload->display_errors();
+                }
+                else
+                {  
+                    $this->session->set_flashdata('uploadgambarbarang','sukses');
+                    echo 'berhasil';
+                }
+                redirect($this->config->base_url().'admin/kelolabarang');
+
+
+
+            }else{
+                $this->load->view('admin/template/header');
+                $this->load->view('admin/tambahBarang');
+            }
+        }else{
+            redirect($this->config->base_url().'admin');
+        }
     }
 }
 
