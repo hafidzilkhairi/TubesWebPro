@@ -30,10 +30,10 @@
 					<a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="<?php echo base_url(); ?>pindah/con">About Us</a>
+					<a class="nav-link" href="<?php echo base_url(); ?>pindah/ab">About Us</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="<?php echo base_url(); ?>pindah/ab">Contact Us</a>
+					<a class="nav-link" href="<?php echo base_url(); ?>pindah/con">Contact Us</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="<?php echo base_url();?>artikel">Artikel</a>

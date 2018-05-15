@@ -1,6 +1,6 @@
 <html lang="en">
   <body>
-    <div class="container" style="margin-top: 20px;" style="background-color: rgba(255, 255, 255, 3);">
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px;" style="background-color: rgba(255, 255, 255, 3);">
       <div class="row">
           <div class="col-lg-12 ml-auto mr-auto">
           <div class="row">

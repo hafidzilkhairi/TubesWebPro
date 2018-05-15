@@ -1,4 +1,4 @@
-<div class="container" style="background:white;">
+<div class="container" style="background:white; margin: 50px;">
     <div class="row">
         <div class="col-md-12">
             <h1 style="text-align:center;"><?php echo $artikel['judul_artikel']; ?></h1>

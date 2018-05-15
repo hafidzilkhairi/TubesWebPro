@@ -45,29 +45,9 @@
 </head>
 <body>
   <!-- Menu Navigasi -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">KURIAK</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" 
-    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="aboutus.html">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contactus.html">Contact Us</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
 
   <!-- Slide Carousel -->
-  <div style="margin-top:10px; background-image: url('aboutus.jpg');">
+  <div style="margin-top:10px; background-image: url('<?php echo base_url(); ?>Resource/img/aboutus.jpg');">
    <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -84,7 +64,7 @@
                 <!-- Preview Image -->
                 <hr>
                 <center>
-                <img class="img-fluid"  src="gmbru.jpg" alt="">
+                <img class="img-fluid"  src="<?php echo base_url(); ?>Resource/img/gmbru.jpg" alt="">
             	</center>
                 <hr>
                 <hr>

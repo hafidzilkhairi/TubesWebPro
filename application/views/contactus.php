@@ -61,28 +61,9 @@
 </head>
 <body>
   <!-- Menu Navigasi -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">KURIAK</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="aboutus.html">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contactus.html">Contact Us</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
 
 <!-- Slide Carousel -->
-  <div  class="okejek"; style="margin-top: 10px ;background-image: url('bisnis.jpg');">
+  <div  class="okejek"; style="background-image: url('<?php echo base_url(); ?>Resource/img/bisnis.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -138,7 +119,7 @@
           <textarea  placeholder="Message:"></textarea>
         </div>
         <div class="col-md-4">
-          <img src="mappp.png" id="gambirr1">
+          <img src="<?php echo base_url(); ?>Resource/img/mappp.jpg" id="gambirr1">
         </div>     
       </div>
       <div class="col-md-3" style="margin-top: 10px">

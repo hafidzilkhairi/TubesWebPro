@@ -1,4 +1,5 @@
-<div class="container" style="background-color:white;">
+<div class="container" style="margin: 50px; background-color:white;">
+    <div>
     <div class="row">
     <?php
     foreach($artikel as $key){
