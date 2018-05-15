@@ -1,5 +1,7 @@
 <div class="container" style="background-color: rgba(255, 255, 255, 0.3); margin-top: 10px; border-radius: 10px;">
-      <form class="ng-pristine ng-valid" method="POST" role="form" style="margin-top: 20px; padding: 30px; padding-bottom: 50px;">
+      <?php
+        echo form_open_multipart('artikelA/inputdata');
+      ?>
         <div><h3 style="text-align: center; margin-bottom: 20px;">Input Artikel</h3></div>
       	<div class="row form-group">
            <div class="col-sm-6">
@@ -28,13 +30,20 @@
             <textarea rows="5" class="form-control" id="inputPassword3" name="kekurangan" required></textarea>
         </div>
         <div class="form-group">
-          <input type="file" name="img" id="preview_gambar"><br><br>
-          <img src="#" id="gambar_nodin" width="400" alt="Preview Gambar" style="display: none;">
+          <input type="file" name="berkas" id="preview_gambar" required><br><br>
+          <img src="#" id="gambar" width="400" alt="Preview Gambar" style="display: none;">
         </div>  
         <div class="form-group">
           <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
         </div>
+<<<<<<< HEAD
       </form>   
+=======
+        <div class="form-group" style="color: red;">
+          <?php if (isset($result)) echo $result; ?>
+        </div>
+        <?php echo form_close(); ?>   
+>>>>>>> 1d2106d4df55a24692603bff1c9a1ce934fef2d5
 </div>
 <script type="text/javascript">
   function bacaGambar(input) {
@@ -42,8 +51,8 @@
       var reader = new FileReader();
  
       reader.onload = function (e) {
-          $('#gambar_nodin').show();
-          $('#gambar_nodin').attr('src', e.target.result);
+          $('#gambar').show();
+          $('#gambar').attr('src', e.target.result);
       }
  
       reader.readAsDataURL(input.files[0]);
@@ -55,3 +64,8 @@
   })
   });
 </script>
+<style>
+  form {
+    margin-top: 20px; padding: 30px; padding-bottom: 50px;
+  }
+</style>

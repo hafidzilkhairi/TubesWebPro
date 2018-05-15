@@ -21,8 +21,9 @@
             <tbody>
                 <?php 
                 /* Insert Your Query to get Data from database*/  
-                if (isset($data)) {
-                  while ($data) {
+                if (isset($x)) {
+                  $no=0;
+                  foreach ($x as $data) {
                     $no++;
                 ?>
                     <!-- Show data Here -->
@@ -34,7 +35,7 @@
                     <td><?php echo $data["tgl"]; ?></td>
                     <td><center>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#del<?php echo $data["id_artikel"]; ?>"><i class="fa fa-trash-o"></i></button>
-                        <a href="func.php?id=<?php echo $data["id_artikel"]; ?>"><button type="button" class="btn btn-info" ><i class="fa fa-pencil"></i></button></center></a>
+                        <a href="<?php echo $this->config->base_url().'artikelA/update?id='.$data['id_artikel'] ;?>"><button type="button" class="btn btn-info" ><i class="fa fa-pencil"></i></button></center></a>
                     </td>
                 </tr>
                   <div class="modal fade" id="del<?php echo $data['id_artikel']; ?>" tabindedata="-1" role="dialog" aria-labelledby="edataampleModalLabel" aria-hidden="true">
@@ -50,7 +51,7 @@
                          <h5 class="modal-title" id="edataampleModalLabel">Are you sure to delete <?php echo $data['id_artikel'];?> ?</h5>
                       </div>
                       <div class="modal-footer">
-                              <form method="POST" action="func.php">
+                              <form method="POST" action="<?php echo $this->config->base_url().'artikelA/deletedata'; ?>">
                                   <!-- Create hidden input here to post id Users-->
                                   <input style="display:none;" type="tedatat" name="id" value="<?php echo $data['id_artikel'];?>">
                                 <button type="submit" name="delete" class="btn btn-danger">YA</a>

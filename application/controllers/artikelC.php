@@ -11,10 +11,16 @@
 	        // }
 		}
 		function index(){
-        $this->load->view('template/header.php');
-        $query=$this->artikel->get();
-        $this->load->view('v_daftarAC', $query);
-        $this->load->view('template/footer.php');
+	        $this->load->view('template/header.php');
+	        $query['data']=$this->artikel->get();
+	        $this->load->view('v_daftarAC', $query);
+	        $this->load->view('template/footer.php');
+    	}
+    	function tampil(){
+    		$x['data']= $this->artikel->getid($_GET['id']);
+    		$this->load->view('template/header.php');
+	        $this->load->view('v_artikel', $x);
+	        $this->load->view('template/footer.php');
     	}
 	}
 ?>
