@@ -7,5 +7,12 @@ class Keranjang extends CI_Controller{
         $this->load->view('keranjang',$data);
         $this->load->view('template/footer.php');
     }
+    function hapusker(){
+    	$data=$this->input->post('id');
+    	$r= $this->db->query("delete from keranjang where id_keranjang=$data");
+    	if ($r) echo "<script>alert('gagal')</script>"; 
+    	else echo "<script>alert('gagal')</script>";
+    	redirect('Keranjang');
+    }
 }
-?>
+?> 

@@ -22,70 +22,70 @@
     		$this->load->view('v_inputA');
     		$this->load->view('template/footer.php');
     	}
-    	function inputdata() {
-<<<<<<< HEAD
-			// setting konfigurasi upload
-			$config['upload_path']          = './imgArtikel/';
-			$config['allowed_types']        = 'jpg||png';
-			$config['max_size']             = 5000;
-			// load library upload
-			$data['namabarang']=
+    	function inputdata() {}
+// <<<<<<< HEAD
+// 			// setting konfigurasi upload
+// 			$config['upload_path']          = './imgArtikel/';
+// 			$config['allowed_types']        = 'jpg||png';
+// 			$config['max_size']             = 5000;
+// 			// load library upload
+// 			$data['namabarang']=
 
-			$this->load->library('upload', $config);
-			if (!$this->upload->do_upload('gambar')) {
-				$data['result'] = $this->upload->display_errors();
-				$this->load->view('v_upload', $data);
-			}
-=======
-        // setting konfigurasi upload
-    	$data['judul']=$this->input->post('judul');
-    	$data['author']=$this->input->post('author');
-    	$data['detail']=$this->input->post('detail');
-    	$data['review']=$this->input->post('review');
-    	$data['kelebihan']=$this->input->post('kelebihan');
-    	$data['kekurangan']=$this->input->post('kekurangan');
-    	$id=$this->artikel->getgetan();
+// 			$this->load->library('upload', $config);
+// 			if (!$this->upload->do_upload('gambar')) {
+// 				$data['result'] = $this->upload->display_errors();
+// 				$this->load->view('v_upload', $data);
+// 			}
+// =======
+//         // setting konfigurasi upload
+//     	$data['judul']=$this->input->post('judul');
+//     	$data['author']=$this->input->post('author');
+//     	$data['detail']=$this->input->post('detail');
+//     	$data['review']=$this->input->post('review');
+//     	$data['kelebihan']=$this->input->post('kelebihan');
+//     	$data['kekurangan']=$this->input->post('kekurangan');
+//     	$id=$this->artikel->getgetan();
 
-        $config['upload_path']          = 'Resource/imgArtikel/';
-		$config['allowed_types']        = 'jpg||png';
-		$config['max_size']             = 5000;
-		$config['file_name']			= $id;
-        // load library upload
+//         $config['upload_path']          = 'Resource/imgArtikel/';
+// 		$config['allowed_types']        = 'jpg||png';
+// 		$config['max_size']             = 5000;
+// 		$config['file_name']			= $id;
+//         // load library upload
 
-        $this->load->library('upload', $config);
-        if (!$this->upload->do_upload("berkas")) {
-            $data['result'] = $this->upload->display_errors();
-            echo "<script>alert('".$data['result']."')</script>";
-        } else {
-        	$this->artikel->insert($data);
-        	redirect('artikelA');
-        }
-		}
-		function update(){
-			$data['x']=$this->artikel->getid($_GET['id']);
-			$this->load->view('template/header.php');
-			$this->load->view('v_editA',$data);
-			$this->load->view('template/footer.php');
-		}
+//         $this->load->library('upload', $config);
+//         if (!$this->upload->do_upload("berkas")) {
+//             $data['result'] = $this->upload->display_errors();
+//             echo "<script>alert('".$data['result']."')</script>";
+//         } else {
+//         	$this->artikel->insert($data);
+//         	redirect('artikelA');
+//         }
+// 		}
+// 		function update(){
+// 			$data['x']=$this->artikel->getid($_GET['id']);
+// 			$this->load->view('template/header.php');
+// 			$this->load->view('v_editA',$data);
+// 			$this->load->view('template/footer.php');
+// 		}
 
-		function updatedata(){
-			$data['judul']=$this->input->post('judul');
-	    	$data['author']=$this->input->post('author');
-	    	$data['detail']=$this->input->post('detail');
-	    	$data['review']=$this->input->post('review');
-	    	$data['kelebihan']=$this->input->post('kelebihan');
-	    	$data['kekurangan']=$this->input->post('kekurangan');
-	    	$data['id_artikel']=$this->input->post('id');
-	    	$this->artikel->update($data);
-	    	redirect('artikelA');
-		}
+// 		function updatedata(){
+// 			$data['judul']=$this->input->post('judul');
+// 	    	$data['author']=$this->input->post('author');
+// 	    	$data['detail']=$this->input->post('detail');
+// 	    	$data['review']=$this->input->post('review');
+// 	    	$data['kelebihan']=$this->input->post('kelebihan');
+// 	    	$data['kekurangan']=$this->input->post('kekurangan');
+// 	    	$data['id_artikel']=$this->input->post('id');
+// 	    	$this->artikel->update($data);
+// 	    	redirect('artikelA');
+// 		}
 
-		function deletedata(){
-			$data["id_artikel"]=$this->input->post('id');
-			$query=$this->artikel->delete($data);
-			redirect('artikelA/index');
->>>>>>> 1d2106d4df55a24692603bff1c9a1ce934fef2d5
-		}
+// 		function deletedata(){
+// 			$data["id_artikel"]=$this->input->post('id');
+// 			$query=$this->artikel->delete($data);
+// 			redirect('artikelA/index');
+// >>>>>>> 1d2106d4df55a24692603bff1c9a1ce934fef2d5
+// 		}
 	}
 
-?> 
+// ?> 

@@ -11,7 +11,7 @@ if($this->session->flashdata('tambahuser')=='berhasil'){
 ?>
 <div class="container">
 	<h1 style="padding: 40px 0;" class="text-center">Keranjang</h1>
-	<table id="tableKelolaUser" class="table table-striped table-bordered">
+	<table id="tableKelolaUser" border="0" class="table table-striped">
 		<thead>
 			<tr>
 				<th>No.</th>
@@ -22,6 +22,7 @@ if($this->session->flashdata('tambahuser')=='berhasil'){
 		</thead>
 		<tbody>
             <?php 
+            $total=0;
             $jumlah = 1;
             foreach ($keranjang as $key){
             echo "<tr>";
@@ -36,14 +37,58 @@ if($this->session->flashdata('tambahuser')=='berhasil'){
 				echo $nama['nama_barang'];?>
 			</td>
 			<td>
-				<?php echo $nama['harga_barang'];?>
+				<?php echo $nama['harga_barang']; $total=$total+$nama['harga_barang']; ?>
+				<div style="float: right">
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#del<?php echo $key["id_keranjang"]; ?>"><i class="fa fa-trash-o"></i></button>
+				</div>
+
 			</td>
 			</a>
+			<div class="modal fade" id="del<?php echo $key['id_keranjang']; ?>" tabindedata="-1" role="dialog" aria-labelledby="edataampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="edataampleModalLabel">Delete Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                         <h5 class="modal-title" id="edataampleModalLabel">Ga jadi beli <?php echo $nama['nama_barang'];?> ?</h5>
+                      </div>
+                      <div class="modal-footer">
+                              <form method="POST" action="<?php echo $this->config->base_url().'keranjang/hapusker'; ?>">
+                                  <!-- Create hidden input here to post id Users-->
+                                  <input style="display:none;" name="id" value="<?php echo $key['id_keranjang'];?>">
+                                <button type="submit" name="delete" class="btn btn-danger">YA</a>
+                              </form>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">TIDAK</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
 			<?php
             echo "</tr>";
         } ?>
 		</tbody>
 	</table>
+	<div class="container" style="margin-bottom: 100px;">
+		<div class="row">
+			<div class="col-md-9"></div>
+			<div class="col-md-3">
+				<table border="0">
+					<tr>
+						<td><?php if ($total==0) echo "belum melakukan pemesanan"; else echo "Total Tagihan : ".$total ?></td>
+					</tr>
+					<tr>
+						<td colspan="2"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<button style="float: right; margin-top: 20px;" class="btn btn-success">Pilih Metode Pembayaran</button>
+	</div>
 	<div id="formulirEdit" style="display:none; position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0, 0, 0, 0.7)">
 		<form method="POST" action="<?php echo $this->config->base_url(); ?>admin/editUser" style="position: relative;margin: 15% 20%;background: white;border-radius: 10px;padding: 20px;">
 			<span onclick="$('#formulirEdit').hide();" style="position: absolute;right: 15px;top: 10px;cursor: pointer;">

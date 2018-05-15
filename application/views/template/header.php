@@ -38,6 +38,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="<?php echo base_url();?>artikel">Artikel</a>
 				</li>
+				<li class="nav navbar-nav navbar-right">
 				<div class="dropdown">
 					<button class="float-right btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false">
@@ -56,6 +57,7 @@
 						<a class="dropdown-item" href="<?php echo base_url(); ?>logout">Logout</a>
 					</div>
 				</div>
+				</li>
 			</ul>
 		</div>
 	</nav>
