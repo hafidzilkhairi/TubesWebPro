@@ -1,5 +1,5 @@
 <?php
-
+    
 class Admin extends CI_Controller{
     public function __construct(){
         parent::__construct();
@@ -33,6 +33,7 @@ class Admin extends CI_Controller{
     }
     public function logout(){
         unset($_SESSION['userAdminId']);
+        unset($_SESSION['userId']);
         redirect($this->config->base_url()."admin");
     }
     public function login(){
@@ -52,6 +53,7 @@ class Admin extends CI_Controller{
             }else{
                 unset($_SESSION['userId']);
                 $this->session->set_userdata('userAdminId',$this->user->getInfoUser($email)['id_user']);
+                $this->session->set_userdata('userId',$this->user->getInfoUser($email)['id_user']);
                 redirect($this->config->base_url()."admin");
             }
         }else{
@@ -185,6 +187,55 @@ class Admin extends CI_Controller{
         $this->load->view('admin/template/header');
         $this->load->view('admin/kelolabarang',$data, array('error' => ' ' ));
     }
+    
+    public function hapusbarang(){
+                $dihapus=$_GET['id_barang'];
+                $query=$this->db->query("select * from gambarbarang where id_barang=$dihapus")->result_array();
+                unlink('asset/barang/'.$query['slug']);
+                echo "<script>alert('".$query['slug']."');</script>";
+                $delete=$this->db->query("delete from barang where id_barang=$dihapus");
+                redirect($this->config->base_url().'admin/kelolabarang');
+
+    }
+    public function gambirbarang(){
+        $this->db->where('id_barang',$_GET['id_barang']);
+        $query = $this->db->get('gambarbarang');
+        if($query->num_rows()>0){
+            $idbarang=$query->result_array()[0]['id_gambarbarang'];
+        }else{
+            $this->db->insert('gambarbarang',array('id_barang'=>$_GET['id_barang']));
+            $query=$this->db->get('gambarbarang','max(id_gambarbarang)');
+            $idbarang=$query->result_array()[0]['max(id_gambarbarang)'];
+        }
+        $config['upload_path']          = 'asset/barang/';
+        $config['allowed_types']        = 'jpg|png|jpeg';
+        $config['max_size']             = 5000000;
+        $config['overwrite']            = TRUE;
+        $file_ext = pathinfo($_FILES["gambir"]["name"], PATHINFO_EXTENSION);
+        $config['file_name']=$idbarang.'.'.$file_ext;;
+        $dia['slug'] = $idbarang.'.'.$file_ext;;
+        $this->db->where('id_gambarbarang',$idbarang);
+        $this->db->update('gambarbarang',$dia);
+        $this->load->library('upload', $config);
+        if ( ! $this->upload->do_upload('gambir'))
+        {
+            redirect($this->config->base_url().'admin/kelolabarang');
+        }else{
+            echo "<script>alert('Gagal edit');</script>";
+            redirect($this->config->base_url().'admin/kelolabarang');
+        }
+    }
+    
+    public function editbarang(){
+                $judul= $_POST['nama'];
+                $deskripsi = $_POST['deskripsi'];
+                $harga=$_POST['harga'];
+                $idbarang=$_GET['id_barang'];
+                $update = $this->db->query("Update barang set nama_barang='$judul', harga_barang=$harga, deskripsi_barang='$deskripsi' where id_barang=$idbarang");
+                redirect($this->config->base_url().'admin/kelolabarang');
+
+    }
+    
     public function tambahBarang(){
         if(isset($_SESSION['userAdminId'])){
             if(isset($_POST['submitTambahBarang'])){

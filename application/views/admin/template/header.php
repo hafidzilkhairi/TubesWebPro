@@ -84,6 +84,7 @@
             <a href="<?php echo $this->config->base_url(); ?>admin/kelolauser"><li>Kelola User</li></a>
             <a href="<?php echo $this->config->base_url(); ?>admin/kelolaartikel"><li>Kelola Artikel</li></a>
             <a href="<?php echo $this->config->base_url(); ?>admin/kelolabarang"><li>Kelola Barang</li></a>
+            <a href="<?php echo $this->config->base_url(); ?>admin/logout"><li>Logout</li></a>
         </ul>
     </div>
     <div class="main-menu">

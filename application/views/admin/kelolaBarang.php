@@ -28,7 +28,7 @@
 					<?php echo $key->harga_barang; ?>
 				</td>
 				<td>
-					<?php echo $key->deskripsi_barang; ?>
+					<?php echo ($key->deskripsi_barang); ?>
 				</td>
 				<td>
 					<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit<?php echo $key->id_barang; ?>">
@@ -40,6 +40,11 @@
 					<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#gambir<?php echo $key->id_barang; ?>">
 						<i class="fa fa-camera"></i>
 					</button>
+					<a href='<?php echo base_url().'barang/'.$key->id_barang; ?>'>
+					<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#gambir<?php echo $key->id_barang; ?>">
+						<i class="fa fa-eye"></i>
+					</button>
+					</a>
 				</td>
 			</tr>
 			<div id="gambir<?php echo $key->id_barang; ?>" class="modal fade" role="dialog">
@@ -49,7 +54,7 @@
 							<button type="button" class="close" data-dismiss="modal"></button>
 							<h4 class="modal-title">Edit Gambar</h4>
 						</div>
-						<?php echo form_open_multipart("http://localhost:85/belajar/index.php/controlbarang/editproduk?idbarang='$key->id_barang'"); ?>
+						<?php echo form_open_multipart(base_url()."Admin/gambirbarang?id_barang=$key->id_barang"); ?>
 						<div class="modal-body">
 							<div class="form-group">
 								<label for="gambar">Gambar</label>
@@ -74,7 +79,7 @@
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"></button>
 							<h4 class="modal-title">Anda Ingin Menghapus?</h4>
-							<?php echo form_open("http://localhost:85/belajar/index.php/controlbarang/hapus?idbarang='$key->id_barang'"); ?>
+							<?php echo form_open_multipart(base_url()."Admin/hapusbarang?id_barang=$key->id_barang"); ?>
 							<input type="hidden" name="hapus" class="form-control" value="<?php echo $key->id_barang;?>" id="hapus" required>
 						</div>
 						<div class="modal-footer">
@@ -95,7 +100,7 @@
 							<button type="button" class="close" data-dismiss="modal"></button>
 							<h4 class="modal-title">Edit Produk</h4>
 						</div>
-						<?php echo form_open("http://localhost:85/belajar/index.php/controlbarang/edit?idbarang='$key->id_barang'"); ?>
+						<?php echo form_open_multipart(base_url()."Admin/editbarang?id_barang=$key->id_barang"); ?>
 						<div class="modal-body">
 							<!--                                     <div class="form-group">
 										<input name="idbarang" value="<?php echo $key->id_barang;?>">
@@ -110,7 +115,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label" for="deskripsi">Deskripsi</label>
-								<textarea type="text" name="deskripsi" class="form-control" value="<?php echo $key->deskripsi_barang;?>" id="deskripsi" required></textarea>
+								<textarea style="min-height:200px;" type="text" name="deskripsi" class="form-control" id="deskripsi" required><?php echo $key->deskripsi_barang;?></textarea>
 							</div>
 						</div>
 						<div class="modal-footer">
