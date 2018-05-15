@@ -40,9 +40,9 @@ if($sad->num_rows()>0){
                 ?>
                 <p id="komen1" class="col-md-9 komen">
                     <?php
-                    $this->db->where('id_user',$key['id_user']);
+                    $this->db->where('id_user',$_SESSION['userId']);
                     $saya = $this->db->get('user','status_user')->result_array()[0]['status_user'];
-                    if($saya = '1'){
+                    if($saya == '1'){
                         ?>
                         <a href="<?php echo base_url(); ?>komentar/hapuskomentar/<?php echo $key['id_komen']; ?>?id=<?php echo $barang['id_barang']; ?>"><i class="fa fa-trash"></i></a>
                         <?php
